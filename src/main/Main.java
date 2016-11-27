@@ -5,7 +5,6 @@ import java.util.stream.IntStream;
 import accessory.Player;
 
 public class Main {
-
     public static void main(String[] args) {
         final Scorebook scorebook = new Scorebook();
         IntStream.rangeClosed(1, 100).forEach(i -> {
