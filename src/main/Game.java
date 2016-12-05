@@ -6,6 +6,7 @@ import accessory.Dice;
 import accessory.Player;
 import accessory.PlayerPiece;
 import bord.Behavior;
+import bord.RamdomSugorokuBord;
 import bord.SugorokuBord;
 import lombok.Getter;
 
@@ -16,12 +17,13 @@ public class Game {
     private Player playerC;
     private SugorokuBord sugorokuBord;
     @Getter private Player winner = null;
+    private static final int BORD_SIZE = 50;
 
     public Game() {
         playerA = new Player("プレイヤーA", new PlayerPiece(), Dice.getInstance());
         playerB = new Player("プレイヤーB", new PlayerPiece(), Dice.getInstance());
         playerC = new Player("プレイヤーC", new PlayerPiece(), Dice.getInstance());
-        sugorokuBord = new SugorokuBord();
+        sugorokuBord = new RamdomSugorokuBord(BORD_SIZE);
     }
 
     public void play() {
@@ -42,7 +44,7 @@ public class Game {
                 System.out.println("出た目は、" + diceNum);
                 sugorokuBord.move(diceNum, playerPiece);
                 player.show(); //
-                if (playerPiece.getNowPosition() == sugorokuBord.goal()) {
+                if (sugorokuBord.isGoal(playerPiece.getNowPosition())) {
                     winner = player;
                     break;
                 }

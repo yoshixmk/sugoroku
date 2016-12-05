@@ -1,34 +1,28 @@
 package bord;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 
 import accessory.PlayerPiece;
 
-public class SugorokuBord {
-    private List<Square> squareList;
+public abstract class SugorokuBord {
+    protected List<Square> squareList;
 
-    public SugorokuBord() {
-        final Square square1 = new Square(new Forword(1));
-        final Square square2 = new Square(new Back(1));
-        final Square square3 = new Square(new LoseTurn(1));
-        final Square square4 = new Square(new DoNothing());
-        List<Square> list = Arrays.asList(square1, square2, square3, square4);
+    public SugorokuBord(int bordSize) {
         squareList = new ArrayList<>();
         // スタートマス
         squareList.add(new Square(new DoNothing()));
-        // 20マス分作成
-        IntStream.range(0, 5).forEach(i -> {
-            squareList.addAll(list);
-        });
+        // Xマス分作成
+        makeSugorokuBord(bordSize);
         // ゴールマス
         squareList.add(new Square(new DoNothing()));
         // 変更できないようにする
         Collections.unmodifiableCollection(squareList);
     }
+
+    // オーバーライドしてボードを作る
+    abstract protected void makeSugorokuBord(int bordSize);
 
     public void move(int diceNum, PlayerPiece playerPiece) {
         final int nextPosition = playerPiece.getNowPosition() + diceNum;
@@ -45,7 +39,8 @@ public class SugorokuBord {
         playerPiece.addPositionNum(square.moveMore());
     }
 
-    public int goal() {
-        return squareList.size();
+    public boolean isGoal(int nowPosition) {
+        // bordSize + 2（スタート＋ゴール）と等しいか調べる
+        return nowPosition == squareList.size();
     }
 }
