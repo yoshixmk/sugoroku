@@ -3,7 +3,8 @@ package bord;
 import lombok.Getter;
 
 public abstract class Behavior {
-    @Getter protected int goingNum = 0;
+    @Getter protected int xnd; // 初めから数えて何番目か指定したい時。絶対位置
+    @Getter protected int goingNum = 0; // 相対位置
     @Getter private Behavior nextBehavior;
 
     public void doing() {
@@ -28,10 +29,5 @@ public abstract class Behavior {
 
     public boolean hasNext() {
         return nextBehavior == null ? false : true;
-    }
-
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
     }
 }
