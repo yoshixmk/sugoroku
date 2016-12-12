@@ -12,4 +12,9 @@ public class Back extends Behavior {
     protected String getBehaviorName() {
         return backNum + "マス戻る";
     }
+
+    @Override
+    public boolean isNegative() {
+        return true;
+    }
 }

@@ -17,4 +17,9 @@ public class LoseTurn extends Behavior {
     protected String getBehaviorName() {
         return times + "回休み";
     }
+
+    @Override
+    public boolean isNegative() {
+        return true;
+    }
 }

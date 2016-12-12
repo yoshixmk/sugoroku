@@ -11,4 +11,8 @@ public class BackToSquareOne extends Jump {
         return "ふりだしに戻る";
     }
 
+    @Override
+    public boolean isNegative() {
+        return true;
+    }
 }

@@ -40,9 +40,9 @@ public class Game {
                     player.show(); //
                     continue;
                 }
-                final int diceNum = player.diceRoll();
+                int diceNum = player.diceRoll();
                 System.out.println("出た目は、" + diceNum);
-                sugorokuBord.move(diceNum, playerPiece);
+                player.move(sugorokuBord);
                 player.show(); //
                 if (sugorokuBord.isGoal(playerPiece.getNowPosition())) {
                     winner = player;

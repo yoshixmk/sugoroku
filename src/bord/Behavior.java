@@ -30,4 +30,9 @@ public abstract class Behavior {
     public boolean hasNext() {
         return nextBehavior == null ? false : true;
     }
+
+    // 効果がプラスになるものであるか
+    public boolean isNegative() {
+        return false;
+    }
 }
