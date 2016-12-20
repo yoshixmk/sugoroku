@@ -7,7 +7,7 @@ public class BackToSquareOne extends Jump {
     }
 
     @Override
-    protected String getBehaviorName() {
+    public String getBehaviorName() {
         return "ふりだしに戻る";
     }
 

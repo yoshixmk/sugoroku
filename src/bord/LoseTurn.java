@@ -14,7 +14,7 @@ public class LoseTurn extends Behavior {
     }
 
     @Override
-    protected String getBehaviorName() {
+    public String getBehaviorName() {
         return times + "回休み";
     }
 

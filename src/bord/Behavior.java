@@ -25,7 +25,7 @@ public abstract class Behavior {
         System.out.println(getBehaviorName() + " " + this.getClass());
     };
 
-    protected abstract String getBehaviorName();
+    public abstract String getBehaviorName();
 
     public boolean hasNext() {
         return nextBehavior == null ? false : true;
@@ -34,5 +34,10 @@ public abstract class Behavior {
     // 効果がプラスになるものであるか
     public boolean isNegative() {
         return false;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return getBehaviorName().equals(((Behavior) obj).getBehaviorName());
     }
 }

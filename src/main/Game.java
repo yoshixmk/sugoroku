@@ -11,24 +11,30 @@ import bord.SugorokuBord;
 import lombok.Getter;
 
 public class Game {
-    // private Dice dice;
-    private Player playerA;
-    private Player playerB;
-    private Player playerC;
+    // 2回に1回しか進めないが、ダイスの目の2.5倍(小数点切り捨て)進める
+    private Player twoAHalfTimesPlayer;
+    // ボードの効果をすべて無効にできる
+    private Player invalidBordAffectPlayer;
+    // 「ふりだしに戻る」のマスに止まった場合、その時点でゴールにワープできる。
+    // ただしそれ以外のネガティブボードの効果は2倍になる
+    private Player teleportationPlayer;
+    // 普通の人
+    private Player normalPlayer;
     private SugorokuBord sugorokuBord;
     @Getter private Player winner = null;
     private static final int BORD_SIZE = 50;
 
     public Game() {
-        playerA = new Player("プレイヤーA", new PlayerPiece(), Dice.getInstance());
-        playerB = new Player("プレイヤーB", new PlayerPiece(), Dice.getInstance());
-        playerC = new Player("プレイヤーC", new PlayerPiece(), Dice.getInstance());
+        twoAHalfTimesPlayer = new TimesPlayer("プレイヤーA", new PlayerPiece(), Dice.getInstance(), 2.5, 2);
+        invalidBordAffectPlayer = new InvalidBordAffectPlayer("プレイヤーB", new PlayerPiece(), Dice.getInstance());
+        teleportationPlayer = new TeleportationNegativeTwoTimesPlayer("プレイヤーC", new PlayerPiece(), Dice.getInstance());
+        normalPlayer = new Player("プレイヤーD", new PlayerPiece(), Dice.getInstance());
         sugorokuBord = new RamdomSugorokuBord(BORD_SIZE);
     }
 
     public void play() {
         while (winner == null) {
-            for (Player player : Arrays.asList(playerA, playerB, playerC)) {
+            for (Player player : Arrays.asList(twoAHalfTimesPlayer, invalidBordAffectPlayer, teleportationPlayer, normalPlayer)) {
                 System.out.println("===" + player.getName() + "===");
                 player.show(); //
                 final PlayerPiece playerPiece = player.getPlayerPiece();

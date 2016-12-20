@@ -9,7 +9,7 @@ public class Back extends Behavior {
     }
 
     @Override
-    protected String getBehaviorName() {
+    public String getBehaviorName() {
         return backNum + "マス戻る";
     }
 

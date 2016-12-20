@@ -1,13 +1,14 @@
 package bord;
 
 import accessory.PlayerPiece;
+import lombok.Getter;
 
 /**
  * @author yoshihiro_ueki
  *         マス目
  */
 public class Square {
-    final private Behavior behavior;
+    @Getter final private Behavior behavior;
 
     public Square(Behavior command) {
         this.behavior = command;

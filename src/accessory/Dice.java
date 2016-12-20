@@ -3,11 +3,13 @@ package accessory;
 import java.util.Random;
 
 public class Dice {
-    private final static Dice dice = new Dice();
-    private final static int maxNum = 6;
+    private final static Dice DICE = new Dice();
+    private int maxNum;
     private int num;
 
     private Dice() {
+        // default
+        maxNum = 6;
     }
 
     public void roll() {
@@ -20,6 +22,6 @@ public class Dice {
     }
 
     public static Dice getInstance() {
-        return dice;
+        return DICE;
     }
 }

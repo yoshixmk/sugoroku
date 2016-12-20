@@ -9,7 +9,7 @@ public class Forword extends Behavior {
     }
 
     @Override
-    protected String getBehaviorName() {
+    public String getBehaviorName() {
         return forwordNum + "マス進む";
     }
 }
