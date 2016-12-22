@@ -30,11 +30,11 @@ public class Player {
     }
 
     public void move(SugorokuBord sugorokuBord) {
-        final int nextPosition = getNextPosition();
+        final int nextPosition = nextPosition();
         if (nextPosition < 0) {
             playerPiece.setNowPosition(0);
             return;
-        } else if (nextPosition > sugorokuBord.size() - 1) {
+        } else if (nextPosition >= sugorokuBord.size()) {
             playerPiece.setNowPosition(sugorokuBord.size());
             return;
         }
@@ -47,7 +47,7 @@ public class Player {
     /**
      * @return 次の場所を決める。プレイヤーの効果を適用
      */
-    protected int getNextPosition() {
+    protected int nextPosition() {
         return playerPiece.getNowPosition() + dice.getNum();
     }
 }

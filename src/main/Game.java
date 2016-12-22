@@ -3,8 +3,11 @@ package main;
 import java.util.Arrays;
 
 import accessory.Dice;
+import accessory.InvalidBordAffectPlayer;
 import accessory.Player;
 import accessory.PlayerPiece;
+import accessory.TeleportationNegativeTwoTimesPlayer;
+import accessory.TimesPlayer;
 import bord.Behavior;
 import bord.RamdomSugorokuBord;
 import bord.SugorokuBord;
@@ -25,10 +28,10 @@ public class Game {
     private static final int BORD_SIZE = 50;
 
     public Game() {
-        twoAHalfTimesPlayer = new TimesPlayer("プレイヤーA", new PlayerPiece(), Dice.getInstance(), 2.5, 2);
-        invalidBordAffectPlayer = new InvalidBordAffectPlayer("プレイヤーB", new PlayerPiece(), Dice.getInstance());
-        teleportationPlayer = new TeleportationNegativeTwoTimesPlayer("プレイヤーC", new PlayerPiece(), Dice.getInstance());
-        normalPlayer = new Player("プレイヤーD", new PlayerPiece(), Dice.getInstance());
+        twoAHalfTimesPlayer = new TimesPlayer("2回に1回しか進めないが、ダイスの目の2.5倍(小数点切り捨て)進めるプレイヤー", new PlayerPiece(), Dice.getInstance(), 2.5, 2);
+        invalidBordAffectPlayer = new InvalidBordAffectPlayer("ボードの効果をすべて無効にできるプレイヤー", new PlayerPiece(), Dice.getInstance());
+        teleportationPlayer = new TeleportationNegativeTwoTimesPlayer("ふりだしが出ればゴールにワープできるがネガティブは２倍のプレイヤー", new PlayerPiece(), Dice.getInstance());
+        normalPlayer = new Player("普通の人", new PlayerPiece(), Dice.getInstance());
         sugorokuBord = new RamdomSugorokuBord(BORD_SIZE);
     }
 

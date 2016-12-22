@@ -1,8 +1,5 @@
-package main;
+package accessory;
 
-import accessory.Dice;
-import accessory.Player;
-import accessory.PlayerPiece;
 import bord.BackToSquareOne;
 import bord.Behavior;
 import bord.Square;
@@ -14,8 +11,9 @@ public class TeleportationNegativeTwoTimesPlayer extends Player {
         super(name, playerPiece, dice);
     }
 
+    @Override
     public void move(SugorokuBord sugorokuBord) {
-        int nextPosition = super.getNextPosition();
+        int nextPosition = super.nextPosition();
         if (nextPosition < 0) {
             playerPiece.setNowPosition(0);
             return;
@@ -30,7 +28,7 @@ public class TeleportationNegativeTwoTimesPlayer extends Player {
             nextPosition = sugorokuBord.size();
         }
         if (behavior.isNegative()) {
-            nextPosition = getNextPosition();
+            nextPosition = nextPosition();
         }
         playerPiece.setNowPosition(nextPosition);
         square.execute(playerPiece);
@@ -40,7 +38,7 @@ public class TeleportationNegativeTwoTimesPlayer extends Player {
     /**
      * @return 次の場所を決める。プレイヤーの効果を適用
      */
-    protected int getNextPosition() {
+    protected int nextPosition() {
         return playerPiece.getNowPosition() + dice.getNum() * 2;
     }
 }

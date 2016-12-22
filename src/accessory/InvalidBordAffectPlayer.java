@@ -1,8 +1,5 @@
-package main;
+package accessory;
 
-import accessory.Dice;
-import accessory.Player;
-import accessory.PlayerPiece;
 import bord.Square;
 import bord.SugorokuBord;
 
@@ -12,7 +9,7 @@ public class InvalidBordAffectPlayer extends Player {
     }
 
     public void move(SugorokuBord sugorokuBord) {
-        final int nextPosition = getNextPosition();
+        final int nextPosition = nextPosition();
         if (nextPosition < 0) {
             playerPiece.setNowPosition(0);
             return;
