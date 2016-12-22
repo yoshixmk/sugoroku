@@ -1,6 +1,5 @@
 package accessory;
 
-import bord.Square;
 import bord.SugorokuBord;
 
 public class TimesPlayer extends Player {
@@ -27,18 +26,7 @@ public class TimesPlayer extends Player {
             System.out.println("skipします。同じ場所のままです");
             return;
         }
-        final int nextPosition = nextPosition();
-        if (nextPosition < 0) {
-            playerPiece.setNowPosition(0);
-            return;
-        } else if (nextPosition >= sugorokuBord.size()) {
-            playerPiece.setNowPosition(sugorokuBord.size());
-            return;
-        }
-        final Square square = sugorokuBord.getSquare(nextPosition);
-        playerPiece.setNowPosition(nextPosition);
-        square.execute(playerPiece);
-        playerPiece.addPositionNum(square.moveMore());
+        super.move(sugorokuBord);
         skipCount = 0;
     }
 

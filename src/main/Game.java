@@ -30,14 +30,15 @@ public class Game {
     public Game() {
         twoAHalfTimesPlayer = new TimesPlayer("2回に1回しか進めないが、ダイスの目の2.5倍(小数点切り捨て)進めるプレイヤー", new PlayerPiece(), Dice.getInstance(), 2.5, 2);
         invalidBordAffectPlayer = new InvalidBordAffectPlayer("ボードの効果をすべて無効にできるプレイヤー", new PlayerPiece(), Dice.getInstance());
-        teleportationPlayer = new TeleportationNegativeTwoTimesPlayer("ふりだしが出ればゴールにワープできるがネガティブは２倍のプレイヤー", new PlayerPiece(), Dice.getInstance());
+        teleportationPlayer =
+            new TeleportationNegativeTwoTimesPlayer("ふりだしが出ればゴールにワープできるがネガティブは２倍のプレイヤー", new PlayerPiece(), Dice.getInstance());
         normalPlayer = new Player("普通の人", new PlayerPiece(), Dice.getInstance());
         sugorokuBord = new RamdomSugorokuBord(BORD_SIZE);
     }
 
     public void play() {
         while (winner == null) {
-            for (Player player : Arrays.asList(twoAHalfTimesPlayer, invalidBordAffectPlayer, teleportationPlayer, normalPlayer)) {
+            for (Player player : Arrays.asList(teleportationPlayer)) {
                 System.out.println("===" + player.getName() + "===");
                 player.show(); //
                 final PlayerPiece playerPiece = player.getPlayerPiece();

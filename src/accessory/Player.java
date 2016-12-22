@@ -31,17 +31,23 @@ public class Player {
 
     public void move(SugorokuBord sugorokuBord) {
         final int nextPosition = nextPosition();
-        if (nextPosition < 0) {
-            playerPiece.setNowPosition(0);
+        if (isOverPosition(sugorokuBord, nextPosition))
             return;
-        } else if (nextPosition >= sugorokuBord.size()) {
-            playerPiece.setNowPosition(sugorokuBord.size());
-            return;
-        }
         final Square square = sugorokuBord.getSquare(nextPosition);
         playerPiece.setNowPosition(nextPosition);
         square.execute(playerPiece);
         playerPiece.addPositionNum(square.moveMore());
+    }
+
+    protected boolean isOverPosition(SugorokuBord sugorokuBord, final int nextPosition) {
+        if (nextPosition < 0) {
+            playerPiece.setNowPosition(0);
+            return true;
+        } else if (nextPosition >= sugorokuBord.size()) {
+            playerPiece.setNowPosition(sugorokuBord.size());
+            return true;
+        }
+        return false;
     }
 
     /**

@@ -1,21 +1,16 @@
 package bord;
 
 public class LoseTurn extends Behavior {
-    private int times;
-
     public LoseTurn(int times) {
-        this.times = times;
-    }
-
-    @Override
-    protected Behavior next() {
-        final int nextTimes = times - 1;
-        return nextTimes < 0 ? null : new LoseTurn(nextTimes);
+        loseTimes = times;
+        if (times > 0) {
+            nextBehavior = new LoseTurn(loseTimes - 1);
+        }
     }
 
     @Override
     public String getBehaviorName() {
-        return times + "回休み";
+        return loseTimes + "回休み";
     }
 
     @Override
